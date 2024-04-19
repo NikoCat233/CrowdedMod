@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Il2CppInterop.Runtime.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Il2CppInterop.Runtime.Attributes;
-using Reactor.Utilities.Attributes;
 using TMPro;
 using UnityEngine;
 
 namespace CrowdedMod.Components;
 
-[RegisterInIl2Cpp]
 public class ShapeShifterPagingBehaviour : AbstractPagingBehaviour
 {
     public ShapeShifterPagingBehaviour(IntPtr ptr) : base(ptr)
@@ -40,7 +38,8 @@ public class ShapeShifterPagingBehaviour : AbstractPagingBehaviour
 
         foreach (var panel in Targets)
         {
-            if (i >= PageIndex * MaxPerPage && i < (PageIndex + 1) * MaxPerPage) {
+            if (i >= PageIndex * MaxPerPage && i < (PageIndex + 1) * MaxPerPage)
+            {
                 panel.gameObject.SetActive(true);
 
                 var relativeIndex = i % MaxPerPage;
@@ -52,7 +51,9 @@ public class ShapeShifterPagingBehaviour : AbstractPagingBehaviour
                                                     shapeshifterMinigame.YStart + shapeshifterMinigame.YOffset * row,
                                                     buttonTransform.localPosition.z
                                                 );
-            } else {
+            }
+            else
+            {
                 panel.gameObject.SetActive(false);
             }
 

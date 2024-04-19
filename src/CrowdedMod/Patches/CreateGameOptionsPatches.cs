@@ -1,7 +1,6 @@
-﻿using System;
-using AmongUs.GameOptions;
+﻿using AmongUs.GameOptions;
 using HarmonyLib;
-using Reactor.Utilities.Extensions;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -36,7 +35,7 @@ internal static class CreateGameOptionsPatches
 
                     __instance.UpdateMaxPlayersButtons(__instance.GetTargetOptions());
                 }));
-                firstButtonRenderer.Destroy();
+                UnityEngine.Object.Destroy(firstButtonRenderer);
 
                 var lastButtonRenderer = __instance.MaxPlayerButtons[^1];
                 lastButtonRenderer.GetComponentInChildren<TextMeshPro>().text = "+";
@@ -58,7 +57,7 @@ internal static class CreateGameOptionsPatches
 
                     __instance.UpdateMaxPlayersButtons(__instance.GetTargetOptions());
                 }));
-                lastButtonRenderer.Destroy();
+                UnityEngine.Object.Destroy(lastButtonRenderer);
 
                 for (var i = 1; i < 11; i++)
                 {
@@ -85,9 +84,9 @@ internal static class CreateGameOptionsPatches
             {
                 var secondButton = __instance.ImpostorButtons[1];
                 secondButton.SpriteRenderer.enabled = false;
-                secondButton.transform.FindChild("ConsoleHighlight").gameObject.Destroy();
-                secondButton.PassiveButton.Destroy();
-                secondButton.BoxCollider.Destroy();
+                UnityEngine.Object.Destroy(secondButton.transform.FindChild("ConsoleHighlight").gameObject);
+                UnityEngine.Object.Destroy(secondButton.PassiveButton);
+                UnityEngine.Object.Destroy(secondButton.BoxCollider);
 
                 var secondButtonText = secondButton.TextMesh;
                 secondButtonText.text = __instance.GetTargetOptions().NumImpostors.ToString();
@@ -98,7 +97,8 @@ internal static class CreateGameOptionsPatches
 
                 var firstPassiveButton = firstButton.PassiveButton;
                 firstPassiveButton.OnClick.RemoveAllListeners();
-                firstPassiveButton.OnClick.AddListener((Action)(() => {
+                firstPassiveButton.OnClick.AddListener((Action)(() =>
+                {
                     var newVal = Mathf.Clamp(
                         byte.Parse(secondButtonText.text) - 1,
                         1,
@@ -114,7 +114,8 @@ internal static class CreateGameOptionsPatches
 
                 var thirdPassiveButton = thirdButton.PassiveButton;
                 thirdPassiveButton.OnClick.RemoveAllListeners();
-                thirdPassiveButton.OnClick.AddListener((Action)(() => {
+                thirdPassiveButton.OnClick.AddListener((Action)(() =>
+                {
                     var newVal = Mathf.Clamp(
                         byte.Parse(secondButtonText.text) + 1,
                         1,

@@ -1,17 +1,15 @@
+using Il2CppInterop.Runtime.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Il2CppInterop.Runtime.Attributes;
 using TMPro;
-using Reactor.Utilities.Attributes;
 using UnityEngine;
 
 namespace CrowdedMod.Components;
 
-[RegisterInIl2Cpp]
 public class VitalsPagingBehaviour : AbstractPagingBehaviour
 {
-    public VitalsPagingBehaviour(IntPtr ptr) : base(ptr) {}
+    public VitalsPagingBehaviour(IntPtr ptr) : base(ptr) { }
 
     public VitalsMinigame vitalsMinigame = null!;
 
