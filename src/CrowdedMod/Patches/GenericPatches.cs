@@ -100,7 +100,7 @@ internal static class GenericPatches
     {
         public static void Postfix(PingTracker __instance)
         {
-            __instance.text.text += "\n<color=#FFB793>CrowdedMod</color>";
+            __instance.text.text += "\n<color=#FFB793>CrowdedModNR</color>";
         }
     }
 

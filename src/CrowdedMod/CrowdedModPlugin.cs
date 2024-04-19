@@ -10,8 +10,10 @@ namespace CrowdedMod;
 
 [BepInAutoPlugin("xyz.crowdedmods.crowdedmod")]
 [BepInProcess("Among Us.exe")]
-//[BepInDependency(ReactorPlugin.Id)]
-//[BepInDependency("gg.reactor.debugger", BepInDependency.DependencyFlags.SoftDependency)] // fix debugger overwriting MinPlayers
+[BepInIncompatibility("gg.reactor.api")]
+
+// This plugin fork the auth manager patch from Reactor, so cant to depend on it
+
 public partial class CrowdedModPlugin : BasePlugin
 {
     public const int MaxPlayers = 127;
